@@ -79,10 +79,12 @@ docker-compose up --build
 
 4. Access the application
 
-- Frontend: http://localhost
+- Frontend: http://localhost:5173
 - API: http://localhost/api
 - Health: http://localhost/api/health
 - Metrics: http://localhost/api/metrics
+
+**Note:** In development mode, the frontend runs on port 5173. For production (NGINX proxied), use http://localhost
 
 ### Development Mode
 
