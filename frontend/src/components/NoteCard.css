@@ -1,0 +1,130 @@
+.note-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.note-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.note-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.note-card-header h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #333;
+  flex: 1;
+  word-break: break-word;
+}
+
+.note-card-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.action-btn {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.action-btn:hover {
+  background: #f0f0f0;
+}
+
+.action-btn.edit {
+  color: #667eea;
+}
+
+.action-btn.delete {
+  color: #e74c3c;
+}
+
+.note-card-content {
+  flex: 1;
+  color: #666;
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 16px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.note-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.note-card-tags .tag {
+  display: inline-block;
+  padding: 4px 10px;
+  background: #e8eaf6;
+  color: #667eea;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.note-card-footer {
+  padding-top: 12px;
+  border-top: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.note-date {
+  font-size: 12px;
+  color: #999;
+}
+
+@media (prefers-color-scheme: dark) {
+  .note-card {
+    background: #2a2a2a;
+  }
+
+  .note-card-header h3 {
+    color: #eee;
+  }
+
+  .note-card-content {
+    color: #aaa;
+  }
+
+  .action-btn:hover {
+    background: #3a3a3a;
+  }
+
+  .note-card-tags .tag {
+    background: #3a3a3a;
+    color: #8b9aef;
+  }
+
+  .note-card-footer {
+    border-top-color: #444;
+  }
+}

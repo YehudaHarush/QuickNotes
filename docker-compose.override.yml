@@ -1,0 +1,65 @@
+services:
+  # Backend API - Instance 1 (Development mode with hot reload)
+  api-1:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
+    container_name: quicknotes-api-1-dev
+    environment:
+      NODE_ENV: development
+      API_PORT: 3000
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USERNAME: ${DB_USERNAME:-postgres}
+      DB_PASSWORD: ${DB_PASSWORD:-postgres}
+      DB_DATABASE: ${DB_DATABASE:-quicknotes}
+      REDIS_URL: redis://redis:6379
+      JWT_SECRET: ${JWT_SECRET:-dev-secret-key}
+      JWT_EXPIRATION: ${JWT_EXPIRATION:-24h}
+      FRONTEND_URL: http://localhost:5173
+    volumes:
+      - ./backend/src:/app/src
+      - ./backend/package.json:/app/package.json
+    ports:
+      - "3001:3000"
+
+  # Backend API - Instance 2 (Development mode with hot reload)
+  api-2:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
+    container_name: quicknotes-api-2-dev
+    environment:
+      NODE_ENV: development
+      API_PORT: 3000
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USERNAME: ${DB_USERNAME:-postgres}
+      DB_PASSWORD: ${DB_PASSWORD:-postgres}
+      DB_DATABASE: ${DB_DATABASE:-quicknotes}
+      REDIS_URL: redis://redis:6379
+      JWT_SECRET: ${JWT_SECRET:-dev-secret-key}
+      JWT_EXPIRATION: ${JWT_EXPIRATION:-24h}
+      FRONTEND_URL: http://localhost:5173
+    volumes:
+      - ./backend/src:/app/src
+      - ./backend/package.json:/app/package.json
+    ports:
+      - "3002:3000"
+
+  # Frontend (Development mode with hot reload)
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    container_name: quicknotes-frontend-dev
+    environment:
+      VITE_API_URL: http://localhost/api
+    volumes:
+      - ./frontend/src:/app/src
+      - ./frontend/package.json:/app/package.json
+      - ./frontend/vite.config.ts:/app/vite.config.ts
+      - ./frontend/tsconfig.json:/app/tsconfig.json
+      - ./frontend/index.html:/app/index.html
+    ports:
+      - "5173:5173"
